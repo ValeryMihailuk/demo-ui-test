@@ -20,49 +20,47 @@ public class AmazonTest {
     }
 
     @Test
-    public void testOpenOnlinerLoginForm() {
+    public void testOpenAmazonCart() {
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get(OnlinerPage.URL);
-        By btnLoginBy = By.xpath(OnlinerPage.BTN_LOGIN);
-        WebElement btmLoginElement = driver.findElement(btnLoginBy);
-        btmLoginElement.click();
-        WebElement textElementLogin = driver.findElement(By.xpath(OnlinerPage.LOGIN_LOGO));
-        Assert.assertEquals("Вход", textElementLogin.getText());
+        driver.get(AmazonPage.URL);
+        By btnCardBy = By.xpath(AmazonPage.BTN_CARD);
+        WebElement cardInput = driver.findElement(btnCardBy);
+        cardInput.click();
+        WebElement textElement = driver.findElement(By.xpath(AmazonPage.CARD_LOGO));
+        Assert.assertEquals("Your Amazon Cart is empty", textElement.getText());
         driver.quit();
     }
 
     @Test
-    public void testOnlinerLoginFormWithEmptyCredentials() {
+    public void testOpenAmazonLoginForm() {
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get(OnlinerPage.URL);
-        By btnLoginBy = By.xpath(OnlinerPage.BTN_LOGIN);
-        WebElement btmLoginElement = driver.findElement(btnLoginBy);
-        btmLoginElement.click();
-        WebElement btmLoginInput = driver.findElement(By.xpath(OnlinerPage.LOGIN_INPUT));
-        btmLoginInput.click();
-        WebElement textElementError1 = driver.findElement(By.xpath(OnlinerPage.LOGIN_NIK_NAME_ERROR));
-        Assert.assertEquals("Укажите ник или e-mail", textElementError1.getText());
-        WebElement textElementError2 = driver.findElement(By.xpath(OnlinerPage.LOGIN_PASSWORD_ERROR));
-        Assert.assertEquals("Укажите пароль", textElementError2.getText());
+        driver.get(AmazonPage.URL);
+        By btnCardBy = By.xpath(AmazonPage.BTN_CARD);
+        WebElement cardInput = driver.findElement(btnCardBy);
+        cardInput.click();
+        WebElement signCard = driver.findElement(By.xpath(AmazonPage.CARD_INPUT_SIGN));
+        signCard.click();
+        WebElement textElementError1 = driver.findElement(By.xpath(AmazonPage.CARD_TEXT));
+        Assert.assertEquals("Sign in", textElementError1.getText());
         driver.quit();
     }
 
     @Test
     public void testOnlinerLoginFormWithEmptyPassword() {
-        WebDriver driver = new ChromeDriver();
+        ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get(OnlinerPage.URL);
-        By btmLoginBy = By.xpath(OnlinerPage.BTN_LOGIN);
-        WebElement btmLoginElement = driver.findElement(btmLoginBy);
-        btmLoginElement.click();
-        WebElement textLoginInput = driver.findElement(By.xpath(OnlinerPage.LOGIN_NIK_NAME_INPUT));
-        textLoginInput.sendKeys(OnlinerPage.EMAIL);
-        WebElement btmLoginInput = driver.findElement(By.xpath(OnlinerPage.LOGIN_INPUT));
-        btmLoginInput.click();
-        WebElement textElementError = driver.findElement(By.xpath(OnlinerPage.LOGIN_PASSWORD_ERROR));
-        Assert.assertEquals("Укажите пароль", textElementError.getText());
+        driver.get(AmazonPage.URL);
+        By btnCardBy = By.xpath(AmazonPage.BTN_CARD);
+        WebElement cardInput = driver.findElement(btnCardBy);
+        cardInput.click();
+        WebElement signCard = driver.findElement(By.xpath(AmazonPage.CARD_INPUT_SIGN));
+        signCard.click();
+        WebElement cardContinue = driver.findElement(By.xpath(AmazonPage.CARD_CONTINUE));
+        cardContinue.click();
+        WebElement textElementError = driver.findElement(By.xpath(AmazonPage.CARD_ERROR));
+        Assert.assertEquals("Enter your email or mobile phone number", textElementError.getText());
         driver.quit();
     }
 }
