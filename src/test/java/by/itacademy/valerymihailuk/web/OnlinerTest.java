@@ -12,8 +12,8 @@ public class OnlinerTest {
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(OnlinerPage.URL);
-        WebElement element = driver.findElement(By.xpath(OnlinerPage.X_PATH_2001_COPYRIGTH));
-        Assert.assertTrue(element.isDisplayed());
+        WebElement textElement = driver.findElement(By.xpath(OnlinerPage.X_PATH_2001_COPYRIGTH));
+        Assert.assertEquals("© 2001—2023 Onlíner", textElement.getText());
         driver.quit();
     }
 
@@ -22,9 +22,11 @@ public class OnlinerTest {
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(OnlinerPage.URL);
-        By btmLoginBy = By.xpath(OnlinerPage.BTN_LOGIN)
-        WebElement element = driver.findElement(By.xpath(OnlinerPage.));
-        Assert.assertTrue(element.isDisplayed());
+        By btnLoginBy = By.xpath(OnlinerPage.BTN_LOGIN);
+        WebElement btmLoginElement = driver.findElement(btnLoginBy);
+        btmLoginElement.click();
+        WebElement textElementLogin = driver.findElement(By.xpath(OnlinerPage.LOGIN_LOGO));
+        Assert.assertEquals("Вход", textElementLogin.getText());
         driver.quit();
     }
 }
